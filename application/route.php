@@ -16,6 +16,9 @@ use think\Route;
 //Shop模块路由
 Route::rule('getShopInfo','index/Shop/getShopInfo');
 Route::rule('addShop','index/Shop/addShop');
+Route::rule('delShop','index/Shop/delShop');
+Route::rule('updateShop','index/Shop/updateShop');
+Route::rule('getShopList','index/Shop/getShopList');
 
 //Order模块路由
 
