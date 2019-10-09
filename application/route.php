@@ -9,13 +9,14 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-return [
-    '__pattern__' => [
-        'name' => '\w+',
-    ],
-    '[hello]'     => [
-        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
-        ':name' => ['index/hello', ['method' => 'post']],
-    ],
+use think\Route;
 
-];
+//Route::rule('路由表达式','路由地址','请求类型','路由参数（数组）','变量规则（数组）');
+
+//Shop模块路由
+Route::rule('getShopInfo','index/Shop/getShopInfo');
+Route::rule('addShop','index/Shop/addShop');
+
+//Order模块路由
+
+
