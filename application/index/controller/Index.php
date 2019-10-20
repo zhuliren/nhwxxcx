@@ -7,23 +7,6 @@ class Index
 {
     public function index()
     {
-        $shop_id = $_REQUEST['shopid'];
-        //首先查询商品类型表并返回相关数据
-        $lxdata = Db::table('tbl_goods_lx')->where('shop_id',$shop_id)->select();
-        //定义一个空数据用于存放整合后需要返回的数据
-        $returndata =array();
-        //foreach遍历循环将数据库查询出来的数组进行遍历 按照循环次数赋值给新的变量$item
-        foreach($lxdata as $item){
-            //将item中id值取出
-            $lx_id = $item['id'];
-            //根据商品类型id查询对应的商品列表
-            $goodsdata = Db::table('tbl_goods')->where('goods_lx_id',$lx_id)->select();
-            //将查询结果复制给item中新建的键名
-            $item['goodslist']=$goodsdata;
-            //复制给之前定义的空数组
-            $returndata[]=$item;
-        }
-
-       return json($returndata);
+        return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>阿人工作室<br/><span style="font-size:30px">阿人 - 为梦想而生</span></p></div><script type="text/javascript" src="https://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script>';
     }
 }

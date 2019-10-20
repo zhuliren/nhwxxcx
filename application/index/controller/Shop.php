@@ -53,7 +53,7 @@ class Shop
     //获取店铺信息
     public function getShopInfo()
     {
-        $shop_id = $_REQUEST['id'];
+        $shop_id = $_REQUEST['shopid'];
         $shopdata = Db::table('tbl_shop')->where('id', $shop_id)->select();
         if ($shopdata) {
             $returndata = array('status' => 0, 'msg' => '成功', 'data' => $shopdata);
@@ -72,5 +72,33 @@ class Shop
             $returndata = array('status' => 1, 'msg' => '无数据', 'data' => '');
         }
         return json($returndata);
+    }
+
+    public function getNearShopInfo(){
+       $longitude = $_REQUEST['longitude'];
+       $latitude = $_REQUEST['latitude'];
+       $dbreturn = Db::table('tbl_shop')->order('distance asc')->limit(0,1)->column('id,shop_name,shop_phone,shop_add,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*('.$longitude.'-longitude)/360),2)+COS(PI()*'.$latitude.'/180)* COS(latitude * PI()/180)*POW(SIN(PI()*('.$latitude.'-latitude)/360),2)))) as distance,shop_hours');
+       if($dbreturn){
+           foreach ($dbreturn as $item){
+               return json(array('status' => 0, 'msg' => '成功', 'data' => $item));
+           }
+       }else{
+           return json(array('status' => 1, 'msg' => '无数据', 'data' => ''));
+       }
+    }
+
+    public function getNearShopList(){
+        $longitude = $_REQUEST['longitude'];
+        $latitude = $_REQUEST['latitude'];
+        $dbreturn = Db::table('tbl_shop')->order('distance asc')->column('id,shop_name,shop_phone,shop_add,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*('.$longitude.'-longitude)/360),2)+COS(PI()*'.$latitude.'/180)* COS(latitude * PI()/180)*POW(SIN(PI()*('.$latitude.'-latitude)/360),2)))) as distance,shop_hours');
+        if($dbreturn){
+            $returndata = array();
+            foreach ($dbreturn as $item){
+                $returndata[]=$item;
+            }
+            return json(array('status' => 0, 'msg' => '成功', 'data' => $returndata));
+        }else{
+            return json(array('status' => 1, 'msg' => '无数据', 'data' => ''));
+        }
     }
 }

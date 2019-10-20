@@ -19,7 +19,14 @@ Route::rule('addShop','index/Shop/addShop');
 Route::rule('delShop','index/Shop/delShop');
 Route::rule('updateShop','index/Shop/updateShop');
 Route::rule('getShopList','index/Shop/getShopList');
+Route::rule('getNearShopInfo','index/Shop/getNearShopInfo');
+Route::rule('getNearShopList','index/Shop/getNearShopList');
 
 //Order模块路由
+
+
+//User模块路由
+Route::rule('login','index/User/login');
+Route::rule('updateUserInfo','index/User/updateUserInfo');
 
 
