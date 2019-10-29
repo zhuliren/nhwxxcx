@@ -29,4 +29,7 @@ Route::rule('getNearShopList','index/Shop/getNearShopList');
 Route::rule('login','index/User/login');
 Route::rule('updateUserInfo','index/User/updateUserInfo');
 
+//Goods模块路由
+Route::rule('getGoodsWithLx','index/Goods/getGoodsWithLx');
+
 
