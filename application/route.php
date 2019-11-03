@@ -23,6 +23,7 @@ Route::rule('getNearShopInfo','index/Shop/getNearShopInfo');
 Route::rule('getNearShopList','index/Shop/getNearShopList');
 
 //Order模块路由
+Route::rule('getFare','index/Order/getFare');
 
 
 //User模块路由

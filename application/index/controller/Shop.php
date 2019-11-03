@@ -77,7 +77,7 @@ class Shop
     public function getNearShopInfo(){
        $longitude = $_REQUEST['longitude'];
        $latitude = $_REQUEST['latitude'];
-       $dbreturn = Db::table('tbl_shop')->order('distance asc')->limit(0,1)->column('id,shop_name,shop_phone,shop_add,shop_hours,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*('.$longitude.'-longitude)/360),2)+COS(PI()*'.$latitude.'/180)* COS(latitude * PI()/180)*POW(SIN(PI()*('.$latitude.'-latitude)/360),2)))) as distance,shop_hours');
+       $dbreturn = Db::table('tbl_shop')->order('distance asc')->limit(0,1)->column('id,shop_name,shop_phone,shop_add,shop_hours,longitude,latitude,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*('.$longitude.'-longitude)/360),2)+COS(PI()*'.$latitude.'/180)* COS(latitude * PI()/180)*POW(SIN(PI()*('.$latitude.'-latitude)/360),2)))) as distance,shop_hours');
        if($dbreturn){
            foreach ($dbreturn as $item){
                return json(array('status' => 0, 'msg' => '成功', 'data' => $item));
@@ -90,7 +90,7 @@ class Shop
     public function getNearShopList(){
         $longitude = $_REQUEST['longitude'];
         $latitude = $_REQUEST['latitude'];
-        $dbreturn = Db::table('tbl_shop')->order('distance asc')->column('id,shop_name,shop_phone,shop_add,shop_hours,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*('.$longitude.'-longitude)/360),2)+COS(PI()*'.$latitude.'/180)* COS(latitude * PI()/180)*POW(SIN(PI()*('.$latitude.'-latitude)/360),2)))) as distance,shop_hours');
+        $dbreturn = Db::table('tbl_shop')->order('distance asc')->column('id,shop_name,shop_phone,shop_add,shop_hours,longitude,latitude,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*('.$longitude.'-longitude)/360),2)+COS(PI()*'.$latitude.'/180)* COS(latitude * PI()/180)*POW(SIN(PI()*('.$latitude.'-latitude)/360),2)))) as distance,shop_hours');
         if($dbreturn){
             $returndata = array();
             foreach ($dbreturn as $item){

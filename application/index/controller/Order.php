@@ -49,4 +49,9 @@ class Order
     public function delOrder(){
 
     }
+
+    public function getFare(){
+        $shopid = $_REQUEST['shopid'];
+        return json(array('status' => 0, 'msg' => '成功', 'data' => array('fare'=>10)));
+    }
 }
